@@ -32,7 +32,12 @@ vi.mock('../db.js', () => ({
 // Mock image module
 vi.mock('../image.js', () => ({
   isImageMessage: vi.fn().mockReturnValue(false),
-  processImage: vi.fn().mockResolvedValue({ content: '[Image: attachments/test.jpg]', relativePath: 'attachments/test.jpg' }),
+  processImage: vi
+    .fn()
+    .mockResolvedValue({
+      content: '[Image: attachments/test.jpg]',
+      relativePath: 'attachments/test.jpg',
+    }),
 }));
 
 // Mock fs
@@ -99,7 +104,6 @@ vi.mock('@whiskeysockets/baileys', () => {
     fetchLatestWaWebVersion: vi
       .fn()
       .mockResolvedValue({ version: [2, 3000, 0] }),
-    downloadMediaMessage: vi.fn().mockResolvedValue(Buffer.from('image-data')),
     normalizeMessageContent: vi.fn((content: unknown) => content),
     makeCacheableSignalKeyStore: vi.fn((keys: unknown) => keys),
     useMultiFileAuthState: vi.fn().mockResolvedValue({
